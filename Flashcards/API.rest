@@ -41,3 +41,15 @@ GET http://127.0.0.1:8000/cards_category/2/ HTTP/1.1
 # get a single card
 
 GET http://127.0.0.1:8000/cards_category/2/1 HTTP/1.1
+
+###
+# Update a single card 
+PUT  http://127.0.0.1:8000/cards_category/2/1 HTTP/1.1
+content-type: application/json
+
+{
+    "category": "1",
+    "question": "Hi",
+    "answer": "This is the new answer"
+}
+

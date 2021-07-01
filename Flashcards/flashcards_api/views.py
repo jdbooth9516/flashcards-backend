@@ -42,6 +42,11 @@ class CategoryDetail(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, request, pk):
+        reply = self.get_category(pk)
+        reply.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class CardsList(APIView):
@@ -88,3 +93,13 @@ class CardDetails(APIView):
 
     def put(self, request, category_id, pk):
         card = self.get_card(pk)
+        serializer = CardsSerializer(card, data=request.data)
+        if serializer.is_valid():
+            serializer.save() 
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, category_id, pk):
+        reply = self.get_card(pk)
+        reply.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
