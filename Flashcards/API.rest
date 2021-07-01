@@ -3,7 +3,7 @@ GET http://127.0.0.1:8000/categories/ HTTP/1.1
 
 
 ### 
-
+# creat a new category 
 POST  http://127.0.0.1:8000/categories/ HTTP/1.1
 content-type: application/json
 
@@ -13,21 +13,31 @@ content-type: application/json
 }
 
 ###
-
+# get a single category 
 GET http://127.0.0.1:8000/category/1/ HTTP/1.1
 
 
 ###
+# get all the flashcards
 GET http://127.0.0.1:8000/cards/ HTTP/1.1\
 
 ###
+# create a new card
 POST  http://127.0.0.1:8000/cards/ HTTP/1.1
 content-type: application/json
 
 {
-    "category": "1",
-    "question": "What color is the sky",
-    "answer": "Blue"
+    "category": "2",
+    "question": "best framwork",
+    "answer": "Vue.js"
 }
 
 ###
+# get all the cards in a catagory
+GET http://127.0.0.1:8000/cards_category/2/ HTTP/1.1
+
+
+###
+# get a single card
+
+GET http://127.0.0.1:8000/cards_category/2/1 HTTP/1.1

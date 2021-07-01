@@ -59,3 +59,32 @@ class CardsList(APIView):
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
+class CardsByCategory(APIView):
+
+    def get_cards(self, category_id):
+        try:
+            return Cards.objects.filter(category_id=category_id)
+        except Cards.DoesNotExist:
+            raise Http404
+
+    def get(self, request, category_id):
+        cards = self.get_cards(category_id)
+        serializer = CardsSerializer(cards, many=True)
+        return Response(serializer.data)
+
+
+class CardDetails(APIView):
+
+    def get_card(self, pk):
+        try:
+            return Cards.objects.get(pk=pk)
+        except Cards.DoesNotExist:
+            raise Http404
+
+    def get(self, request, category_id, pk):
+        card = self.get_card(pk)
+        serializer = CardsSerializer(card)
+        return Response(serializer.data)
+
+    def put(self, request, category_id, pk):
+        card = self.get_card(pk)
